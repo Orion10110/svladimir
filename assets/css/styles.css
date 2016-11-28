@@ -1,0 +1,165 @@
+/* BOOTSTRAP 3.x GLOBAL STYLES
+-------------------------------------------------- */
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+}
+
+.align-left{
+    text-align:right;
+}
+
+.head-margin{
+    margin-bottom:15px;
+}
+
+img{
+    display:inline-block;
+   
+    border: 1px solid #CCC;
+    padding: 2px;
+    margin: 10px 10px 20px 0;
+}
+
+img.adaptive{
+    max-width: 100%;
+    height: auto;
+}
+
+div.gallery_block{
+    margin-left:10px;
+    display:inline-block;
+}
+
+.title-articls{
+    margin-left:0px;
+    margin-top:0px;
+    padding-left:0px;
+}
+
+.title-articls>h2{
+    margin-top:0px;
+}
+
+a.gallery{
+    display:inline-block;
+}
+.marg{
+     margin:10px 0px 20px 20px;
+}
+.centre-margin{
+    margin-left:auto;
+       margin-right:auto;
+       width:80%;
+}
+h3.news_title{
+    margin:0;
+}
+div.centre-margin>a{
+    margin-left:10px;
+}
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+ul.navbar-nav{
+  padding-left: 20px;
+}
+
+
+.jumbotron {
+background-image: url("../img/p1.jpg");
+background-size: 100% 120%;
+background-position: 0% 100%;
+
+
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    padding-bottom: 300px;
+}
+.container-jumb{
+  padding-right: 30px;
+    padding-left: 30px;
+}
+
+.jumb-up{
+  box-shadow:0 0 0 500px rgba(0, 0, 0, 0.33) inset;
+ position:absolute;
+ width: 400px;
+ top:0px;
+
+}
+.jumb{
+  margin:20px 20px ;
+
+}
+h1.jumb{
+  padding-top:50px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size:2.7em;
+    margin-bottom: 50px;
+}
+
+.navbar-inverse {
+    background-color: rgba(49, 39, 136, 0.87);
+}
+
+.hidd{
+       font-size:15px;
+       margin:10px;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+
+
+@media (min-width: 992px ) {
+
+    .hidd{
+        display:none;
+    }
+
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+    margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+  }
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+
+
+}
+
+@media (max-width: 992px ) {
+.toggle-side{
+    display:none;
+}
+
+.jumbotron {
+
+background-size: 100% 100%;
+background-position: 0% 0%;
+}
+
+
+
+}
+
+
+

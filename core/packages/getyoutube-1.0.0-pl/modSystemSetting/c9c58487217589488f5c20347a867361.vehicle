@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'getyoutube',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '7ca9ea9e80f27d033accf8f7c26b00ff',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'c9c58487217589488f5c20347a867361',
+  'native_key' => 'getyoutube.api_key',
+  'object' => '{"key":"getyoutube.api_key","value":"","xtype":"textfield","namespace":"getyoutube","area":"api","editedon":null}',
+);

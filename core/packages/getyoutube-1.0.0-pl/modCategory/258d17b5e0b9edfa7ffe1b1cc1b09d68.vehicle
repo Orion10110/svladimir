@@ -1,0 +1,69 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Chunks' => 
+    array (
+      '1aa78924308c4a381c7e74b8c15299df' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modChunk',
+        'object' => '{"id":0,"source":0,"property_preprocess":0,"name":"videoTpl","description":"Example Chunk serving as a Template.","editor_type":0,"category":0,"cache_type":0,"snippet":"<div>\\r\\n  <span>[[+idx]]<a href=\\"[[+url]]\\" target=\\"_blank\\">[[+title]]<\\/a><\\/span><br>\\r\\n  <a href=\\"[[+url]]\\" target=\\"_blank\\"><img src=\\"[[+thumbnail_small]]\\" alt=\\"[[+title]]\\"><\\/a><br>\\r\\n  <span><i>[[+publish_date:ago]]<\\/i><br><\\/span>\\r\\n<\\/div>","locked":0,"properties":"","static":0,"static_file":"","content":"<div>\\r\\n  <span>[[+idx]]<a href=\\"[[+url]]\\" target=\\"_blank\\">[[+title]]<\\/a><\\/span><br>\\r\\n  <a href=\\"[[+url]]\\" target=\\"_blank\\"><img src=\\"[[+thumbnail_small]]\\" alt=\\"[[+title]]\\"><\\/a><br>\\r\\n  <span><i>[[+publish_date:ago]]<\\/i><br><\\/span>\\r\\n<\\/div>"}',
+        'guid' => '909b8140c4f1d9799df2ad9af7af3ceb',
+        'native_key' => 0,
+        'signature' => '793112a33acc8b323f3b800367dfc291',
+      ),
+    ),
+    'Snippets' => 
+    array (
+      '9cc778fc6a53f374b2a5dbcfce3af014' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":0,"source":0,"property_preprocess":0,"name":"getYoutube","description":"A video retrieval Snippet for MODX Revolution. This snippet uses the YouTube Data API (v3) to search for specified channels or videos and return the associated data.","editor_type":0,"category":0,"cache_type":0,"snippet":"\\/**\\n * A simple video retrieval Snippet for MODX Revolution.\\n *\\n * @author David Pede <dev@tasianmedia.com> <https:\\/\\/twitter.com\\/davepede>\\n * @version 1.0.0-pl\\n * @released April 14, 2014\\n * @since February 25, 2014\\n * @package getyoutube\\n *\\n * Copyright (C) 2014 David Pede. All rights reserved. <dev@tasianmedia.com>\\n *\\n * getYoutube is free software; you can redistribute it and\\/or modify it under the\\n * terms of the GNU General Public License as published by the Free Software\\n * Foundation; either version 2 of the License, or any later version.\\n\\n * getYoutube is distributed in the hope that it will be useful, but WITHOUT ANY\\n * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR\\n * A PARTICULAR PURPOSE. See the GNU General Public License for more details.\\n\\n * You should have received a copy of the GNU General Public License along with\\n * getYoutube; if not, write to the Free Software Foundation, Inc., 59 Temple\\n * Place, Suite 330, Boston, MA 02111-1307 USA\\n *\\/\\n\\n$getyoutube = $modx->getService(\'getyoutube\',\'getYoutube\',$modx->getOption(\'getyoutube.core_path\',null,$modx->getOption(\'core_path\').\'components\\/getyoutube\\/\').\'model\\/getyoutube\\/\',$scriptProperties);\\nif (!($getyoutube instanceof getYoutube)) return \'\';\\n\\n\\/* set default properties *\\/\\n$apiKey = $modx->getOption(\'getyoutube.api_key\',$scriptProperties);\\n$mode = !empty($mode) ? $mode : \'\'; \\/\\/Acceptable values are: channel, video\\n$channel = !empty($channel) ? $channel : \'\';\\n$video = !empty($video) ? $video : \'\';\\n$tpl = !empty($tpl) ? $tpl : \'\';\\n$tplAlt = !empty($tplAlt) ? $tplAlt : \'\';\\n$toPlaceholder = !empty($toPlaceholder) ? $toPlaceholder : \'\'; \\/\\/Blank default makes \'&toPlaceholder\' optional\\n$sortby = !empty($sortby) ? $sortby : \'\'; \\/\\/Acceptable values are: date, rating, title, viewCount\\n$safeSearch = !empty($safeSearch) ? $safeSearch : \'\'; \\/\\/Acceptable values are: none, moderate, strict\\n\\n$limit = !empty($limit) ? $limit : \'\';\\n$pageToken = preg_replace(\'\\/[^-a-zA-Z0-9_]\\/\',\'\',$_GET[\'page\']); \\/\\/For pagination\\n$totalVar = !empty($totalVar) ? $totalVar : \'\';\\n\\ninclude_once ($getyoutube->config[\'modelPath\'] . \'search.class.php\');\\n\\nswitch ($mode) {\\n  case \\"channel\\":\\n    if (!empty($channel)) {\\n      $query = new search();\\n      $channelUrl = \\"https:\\/\\/www.googleapis.com\\/youtube\\/v3\\/search?part=id,snippet&channelId=$channel&type=video&safeSearch=$safeSearch&maxResults=$limit&order=$sortby&pageToken=$pageToken&key=$apiKey\\";\\n      $output = $query->channel($channelUrl,$tpl,$tplAlt,$toPlaceholder,$pageToken,$totalVar);\\n    }else{\\n      $modx->log(modX::LOG_LEVEL_ERROR, \'getYoutube() - &channel is required\');\\n    }\\n    break;\\n  case \\"video\\":\\n    if (!empty($video)) {\\n      $query = new search();\\n      $videoUrl = \\"https:\\/\\/www.googleapis.com\\/youtube\\/v3\\/videos?part=id,snippet,contentDetails,statistics&id=$video&key=$apiKey\\";\\n      $output = $query->video($videoUrl,$tpl,$tplAlt,$toPlaceholder,$totalVar);\\n    }else{\\n      $modx->log(modX::LOG_LEVEL_ERROR, \'getYoutube() - &video is required\');\\n    }\\n    break;\\n  default: $modx->log(modX::LOG_LEVEL_ERROR, \'getYoutube() - &mode is required\'); break;\\n};\\n\\nreturn $output;","locked":0,"properties":"a:10:{s:4:\\"mode\\";a:7:{s:4:\\"name\\";s:4:\\"mode\\";s:4:\\"desc\\";s:62:\\"Select the search mode. [OPTIONS: channel or video] [REQUIRED]\\";s:4:\\"type\\";s:4:\\"list\\";s:7:\\"options\\";a:2:{i:0;a:2:{s:4:\\"text\\";s:7:\\"channel\\";s:5:\\"value\\";s:7:\\"channel\\";}i:1;a:2:{s:4:\\"text\\";s:5:\\"video\\";s:5:\\"value\\";s:5:\\"video\\";}}s:5:\\"value\\";s:5:\\"video\\";s:7:\\"lexicon\\";N;s:4:\\"area\\";s:0:\\"\\";}s:7:\\"channel\\";a:7:{s:4:\\"name\\";s:7:\\"channel\\";s:4:\\"desc\\";s:46:\\"The numeric ID of a YouTube Channel to search.\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";N;s:4:\\"area\\";s:0:\\"\\";}s:2:\\"id\\";a:7:{s:4:\\"name\\";s:2:\\"id\\";s:4:\\"desc\\";s:54:\\"A comma-separated list of numeric video IDs to search.\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";N;s:4:\\"area\\";s:0:\\"\\";}s:3:\\"tpl\\";a:7:{s:4:\\"name\\";s:3:\\"tpl\\";s:4:\\"desc\\";s:49:\\"Name of a chunk serving as a template. [REQUIRED]\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:8:\\"videoTpl\\";s:7:\\"lexicon\\";N;s:4:\\"area\\";s:0:\\"\\";}s:6:\\"tplAlt\\";a:7:{s:4:\\"name\\";s:6:\\"tplAlt\\";s:4:\\"desc\\";s:60:\\"Name of a chunk serving as a template for every other Video.\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";N;s:4:\\"area\\";s:0:\\"\\";}s:6:\\"sortby\\";a:7:{s:4:\\"name\\";s:6:\\"sortby\\";s:4:\\"desc\\";s:72:\\"A placeholder name to sort by. [OPTIONS: date, rating, title, viewCount]\\";s:4:\\"type\\";s:4:\\"list\\";s:7:\\"options\\";a:4:{i:0;a:2:{s:4:\\"text\\";s:4:\\"date\\";s:5:\\"value\\";s:4:\\"date\\";}i:1;a:2:{s:4:\\"text\\";s:6:\\"rating\\";s:5:\\"value\\";s:6:\\"rating\\";}i:2;a:2:{s:4:\\"text\\";s:5:\\"title\\";s:5:\\"value\\";s:5:\\"title\\";}i:3;a:2:{s:4:\\"text\\";s:9:\\"viewCount\\";s:5:\\"value\\";s:9:\\"viewCount\\";}}s:5:\\"value\\";s:4:\\"date\\";s:7:\\"lexicon\\";N;s:4:\\"area\\";s:0:\\"\\";}s:13:\\"toPlaceholder\\";a:7:{s:4:\\"name\\";s:13:\\"toPlaceholder\\";s:4:\\"desc\\";s:85:\\"If set, will assign the output to this placeholder instead of outputting it directly.\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";N;s:4:\\"area\\";s:0:\\"\\";}s:5:\\"limit\\";a:7:{s:4:\\"name\\";s:5:\\"limit\\";s:4:\\"desc\\";s:131:\\"Limits the number of Videos returned. [NOTE: Acceptable values are 0 to 50, inclusive. Please see pagination docs for more details]\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:2:\\"50\\";s:7:\\"lexicon\\";N;s:4:\\"area\\";s:0:\\"\\";}s:8:\\"totalVar\\";a:7:{s:4:\\"name\\";s:8:\\"totalVar\\";s:4:\\"desc\\";s:97:\\"Define the key of a placeholder set by getYoutube indicating the total number of Videos returned.\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:5:\\"total\\";s:7:\\"lexicon\\";N;s:4:\\"area\\";s:0:\\"\\";}s:10:\\"safeSearch\\";a:7:{s:4:\\"name\\";s:10:\\"safeSearch\\";s:4:\\"desc\\";s:124:\\"Select whether the results should include restricted content as well as standard content. [OPTIONS:  none, moderate, strict]\\";s:4:\\"type\\";s:4:\\"list\\";s:7:\\"options\\";a:3:{i:0;a:2:{s:4:\\"text\\";s:4:\\"none\\";s:5:\\"value\\";s:4:\\"none\\";}i:1;a:2:{s:4:\\"text\\";s:8:\\"moderate\\";s:5:\\"value\\";s:8:\\"moderate\\";}i:2;a:2:{s:4:\\"text\\";s:6:\\"strict\\";s:5:\\"value\\";s:6:\\"strict\\";}}s:5:\\"value\\";s:4:\\"none\\";s:7:\\"lexicon\\";N;s:4:\\"area\\";s:0:\\"\\";}}","moduleguid":"","static":0,"static_file":"","content":"\\/**\\n * A simple video retrieval Snippet for MODX Revolution.\\n *\\n * @author David Pede <dev@tasianmedia.com> <https:\\/\\/twitter.com\\/davepede>\\n * @version 1.0.0-pl\\n * @released April 14, 2014\\n * @since February 25, 2014\\n * @package getyoutube\\n *\\n * Copyright (C) 2014 David Pede. All rights reserved. <dev@tasianmedia.com>\\n *\\n * getYoutube is free software; you can redistribute it and\\/or modify it under the\\n * terms of the GNU General Public License as published by the Free Software\\n * Foundation; either version 2 of the License, or any later version.\\n\\n * getYoutube is distributed in the hope that it will be useful, but WITHOUT ANY\\n * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR\\n * A PARTICULAR PURPOSE. See the GNU General Public License for more details.\\n\\n * You should have received a copy of the GNU General Public License along with\\n * getYoutube; if not, write to the Free Software Foundation, Inc., 59 Temple\\n * Place, Suite 330, Boston, MA 02111-1307 USA\\n *\\/\\n\\n$getyoutube = $modx->getService(\'getyoutube\',\'getYoutube\',$modx->getOption(\'getyoutube.core_path\',null,$modx->getOption(\'core_path\').\'components\\/getyoutube\\/\').\'model\\/getyoutube\\/\',$scriptProperties);\\nif (!($getyoutube instanceof getYoutube)) return \'\';\\n\\n\\/* set default properties *\\/\\n$apiKey = $modx->getOption(\'getyoutube.api_key\',$scriptProperties);\\n$mode = !empty($mode) ? $mode : \'\'; \\/\\/Acceptable values are: channel, video\\n$channel = !empty($channel) ? $channel : \'\';\\n$video = !empty($video) ? $video : \'\';\\n$tpl = !empty($tpl) ? $tpl : \'\';\\n$tplAlt = !empty($tplAlt) ? $tplAlt : \'\';\\n$toPlaceholder = !empty($toPlaceholder) ? $toPlaceholder : \'\'; \\/\\/Blank default makes \'&toPlaceholder\' optional\\n$sortby = !empty($sortby) ? $sortby : \'\'; \\/\\/Acceptable values are: date, rating, title, viewCount\\n$safeSearch = !empty($safeSearch) ? $safeSearch : \'\'; \\/\\/Acceptable values are: none, moderate, strict\\n\\n$limit = !empty($limit) ? $limit : \'\';\\n$pageToken = preg_replace(\'\\/[^-a-zA-Z0-9_]\\/\',\'\',$_GET[\'page\']); \\/\\/For pagination\\n$totalVar = !empty($totalVar) ? $totalVar : \'\';\\n\\ninclude_once ($getyoutube->config[\'modelPath\'] . \'search.class.php\');\\n\\nswitch ($mode) {\\n  case \\"channel\\":\\n    if (!empty($channel)) {\\n      $query = new search();\\n      $channelUrl = \\"https:\\/\\/www.googleapis.com\\/youtube\\/v3\\/search?part=id,snippet&channelId=$channel&type=video&safeSearch=$safeSearch&maxResults=$limit&order=$sortby&pageToken=$pageToken&key=$apiKey\\";\\n      $output = $query->channel($channelUrl,$tpl,$tplAlt,$toPlaceholder,$pageToken,$totalVar);\\n    }else{\\n      $modx->log(modX::LOG_LEVEL_ERROR, \'getYoutube() - &channel is required\');\\n    }\\n    break;\\n  case \\"video\\":\\n    if (!empty($video)) {\\n      $query = new search();\\n      $videoUrl = \\"https:\\/\\/www.googleapis.com\\/youtube\\/v3\\/videos?part=id,snippet,contentDetails,statistics&id=$video&key=$apiKey\\";\\n      $output = $query->video($videoUrl,$tpl,$tplAlt,$toPlaceholder,$totalVar);\\n    }else{\\n      $modx->log(modX::LOG_LEVEL_ERROR, \'getYoutube() - &video is required\');\\n    }\\n    break;\\n  default: $modx->log(modX::LOG_LEVEL_ERROR, \'getYoutube() - &mode is required\'); break;\\n};\\n\\nreturn $output;"}',
+        'guid' => '7002c82e7a84be897c6bc7ef13595f12',
+        'native_key' => 0,
+        'signature' => '1ca7075311d6c0fa5c5391c44a02ac6c',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'Chunks' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+  ),
+  'namespace' => 'getyoutube',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"getyoutube-1.0.0-pl\\/modCategory\\/258d17b5e0b9edfa7ffe1b1cc1b09d68\\/0\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"getyoutube"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'dd107a81815157072f7c00aa2962cb24',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => '258d17b5e0b9edfa7ffe1b1cc1b09d68',
+  'native_key' => 1,
+  'object' => '{"id":1,"parent":0,"category":"getYoutube"}',
+);
